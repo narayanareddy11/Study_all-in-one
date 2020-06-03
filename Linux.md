@@ -14,6 +14,10 @@
 - script > log.txt &
 - alias ls
 - jobs
+- perl or awk 
+	- ex: awk '{ print $0 }' /etc/passwd)
+	- awk -F':' '{ print $1 }' /etc/passwd | sort
+	- awk '{print $1}' myfile 
 - -r reverses sort
 -  uniq -remove dublicate
 - -n sorts numerically
