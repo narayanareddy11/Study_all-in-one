@@ -1,3 +1,41 @@
+### Bash shell scripts
+
+- Execute bash commands from a file
+- Automate sequences of shell commands
+
+### Shebang line:
+- Species which interpreter should run the code
+
+### variable
+- x=10
+- If x already existed, it is assigned the new value
+- filenames=”notes.txt picture.jpg movie.mov”
+- Values containing spaces: use quotes
+- echo “${foo}bar”
+- Use $HOME instead of ~
+- read -p “Type your name: “ name
+- Use -x option in hashbang line
+- use “set -x” to enable and “set +x” to disable
+
+###  [[ Expression ]]
+- Spaces around the expression are very important!
+- Same for switches (-e) and equals sign
+#### Expression True if
+- [[ $str ]] str is not empty
+- [[ $str = “something” ]] str equals string “something”
+- [[ $str=”something” ]] always returns true!
+- [[ -e $!lename ]] !le $!lename exists
+- [[ -d $dirname ]] $dirname is a directory
+
+### Sending both error and output to a single file
+- cmd > logfile 2>&1
+- Don’t do this: cmd > logfile
+- $# contains number of script arguments
+- $? contains exit status for last command
+- Input redirection: <
+- Output redirection: >, >>
+- Redirecting a specific stream: 2>
+- Redirecting into another stream: 2>&1
 ### demo: 1
 
 ```
