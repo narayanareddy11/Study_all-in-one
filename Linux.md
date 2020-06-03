@@ -7,6 +7,17 @@
 - Species which interpreter should run the code
 
 #### variable
+- bash - bourne again shell 
+- tail -f log  is live log
+- .bashrc and .bash_profile bot are in the home directory to change the terminal
+- nohup script.sh > log.txt &    # even if you close the terminal it still runing
+- script > log.txt &
+- alias ls
+- jobs
+- -r reverses sort
+-  uniq -remove dublicate
+- -n sorts numerically
+- -k sorts by !eld
 - PATH=”$PATH:~/bin”
 - x=10
 - If x already existed, it is assigned the new value
@@ -24,6 +35,10 @@
 #### Retrieving a value
 - echo ${x[0]}   # read value 
 
+#### replace 
+ - tr (ex: tr 	S s filename)  
+ - sed -i 's/old-text/new-text/g' input.txt 
+ - echo $LINE | sed -e "s/12345678/${replace}/g"
 ####  [[ Expression ]]
 - Spaces around the expression are very important!
 - Same for switches (-e) and equals sign
