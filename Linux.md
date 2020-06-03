@@ -7,6 +7,7 @@
 - Species which interpreter should run the code
 
 #### variable
+- PATH=”$PATH:~/bin”
 - x=10
 - If x already existed, it is assigned the new value
 - filenames=”notes.txt picture.jpg movie.mov”
@@ -16,6 +17,12 @@
 - read -p “Type your name: “ name
 - Use -x option in hashbang line
 - use “set -x” to enable and “set +x” to disable
+ - Storing a value
+- x[0]=”some”
+- x[1]=”word”
+- reguler expresion 
+#### Retrieving a value
+- echo ${x[0]}   # read value 
 
 ####  [[ Expression ]]
 - Spaces around the expression are very important!
@@ -28,6 +35,7 @@
 - [[ -d $dirname ]] $dirname is a directory
 
 ### Sending both error and output to a single file
+- Uses IFS variable for delimiters ex: IFS=: READ  a b , 2:5,    echo $a echo $b
 - cmd > logfile 2>&1
 - Don’t do this: cmd > logfile
 - $# contains number of script arguments
@@ -39,9 +47,15 @@
 
 #### export var
 
+- 0: Standard Input (stdin)
+/dev/stdin
+- 1: Standard Output (stdout)
+/dev/stdout
+- 2: Standard Error (stderr)
 - export var=”value”
 - declare -x var
-- declare -x var=”value”
+- declare -x var=”value”   # global varible and different files 
+
 #### all:
 - $@: All
 	-  Equivalent to $1 $2 $3 ... $N
@@ -217,7 +231,7 @@ declare reverse=""
 declare -i begin=0
 declare -i step=1
 
-while getopts ":b:s:r" opt; do
+while getopts ":b:s:r" opt; do    
 	case $opt in
 		r)
 			reverse="yes"			
