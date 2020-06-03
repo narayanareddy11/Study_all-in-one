@@ -36,8 +36,38 @@
 - Output redirection: >, >>
 - Redirecting a specific stream: 2>
 - Redirecting into another stream: 2>&1
-#### demo: 1
 
+#### export var
+
+- export var=”value”
+- declare -x var
+- declare -x var=”value”
+
+#### demo1: 
+
+```
+printf %s 'Enter a number: ' >&2
+read -r number
+if ((number == 1234)); then
+    echo 'Good guess'
+else
+    echo 'Haha... :-P'
+fi
+```
+#### demo3:
+```
+function printSum {
+    typeset -A args
+    typeset name
+    for name in first second; do
+        [[ -t 0 ]] && printf 'Enter %s positive integer: ' "$name" >&2
+        read -r ${BASH_VERSION+-e} "args[$name]"
+        [[ ${args[$name]} == +([[:digit:]]) ]] || return 1 # Validation is extremely important whenever user input is used in arithmetic.
+    done
+    printf 'The sum is %d.' $((${args[first]} + ${args[second]}))
+}
+```
+#### demo: 1
 ```
 #!/bin/bash
 
