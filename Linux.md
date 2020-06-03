@@ -3,10 +3,10 @@
 - Execute bash commands from a file
 - Automate sequences of shell commands
 
-### Shebang line:
+#### Shebang line:
 - Species which interpreter should run the code
 
-### variable
+#### variable
 - x=10
 - If x already existed, it is assigned the new value
 - filenames=”notes.txt picture.jpg movie.mov”
@@ -17,7 +17,7 @@
 - Use -x option in hashbang line
 - use “set -x” to enable and “set +x” to disable
 
-###  [[ Expression ]]
+####  [[ Expression ]]
 - Spaces around the expression are very important!
 - Same for switches (-e) and equals sign
 #### Expression True if
@@ -36,7 +36,7 @@
 - Output redirection: >, >>
 - Redirecting a specific stream: 2>
 - Redirecting into another stream: 2>&1
-### demo: 1
+#### demo: 1
 
 ```
 #!/bin/bash
