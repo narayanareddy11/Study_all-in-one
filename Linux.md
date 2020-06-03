@@ -20,6 +20,7 @@
 	- awk '{print $1}' myfile 
 - -r reverses sort
 -  uniq -remove dublicate
+- sort, uniq, cut and head 
 - -n sorts numerically
 - -k sorts by !eld
 - PATH=”$PATH:~/bin”
