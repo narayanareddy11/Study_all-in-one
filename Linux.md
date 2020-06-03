@@ -42,6 +42,30 @@
 - export var=”value”
 - declare -x var
 - declare -x var=”value”
+#### all:
+- $@: All
+	-  Equivalent to $1 $2 $3 ... $N
+	-  But when double quoted: “$1” “$2” “$3” ... “$N”
+	- So parameters containing multiple words stay intact
+- $*
+	- Equivalent to $1 $2 $3 ... $N
+	- But when double quoted: “$1 $2 $3 ... $N”
+	- Don’t use this; use $@ instead!
+- $#
+	- Holds the number of arguments passed to the script
+	
+#### Removing part of a string
+
+- ${var#pattern} Removes shortest match from begin of string
+- ${var##pattern} Removes longest match from begin of string
+- ${var%pattern} Removes shortest match from end of string
+- ${var%%pattern} Removes longest match from end of string
+
+#### At
+	- Will execute your script at a speci!c time
+	- at -f myscript noon tomorrow
+- Cron
+	-  Will execute your script according to a schedule
 
 #### demo1: 
 
@@ -110,4 +134,108 @@ else
 fi
 
 exit 0
+```
+#### Case:
+```
+#/bin/bash
+
+# This script prints a range of numbers
+# Usage: count [-r] [-b n] [-s n] stop
+# -b gives the number to begin with (default: 0)
+# -r reverses the count
+# -s sets step size (default: 1)
+# counting will stop at stop.
+
+declare reverse=""
+declare -i begin=0
+declare -i step=1
+
+while getopts ":b:s:r" opt; do
+	case $opt in
+		r)
+			reverse="yes"			
+			;;
+		b) 
+			[[ ${OPTARG} =~ ^[0-9]+$ ]] || { echo "${OPTARG} is not a number" >&2; exit 1; }
+			start="${OPTARG}"
+			;;
+		s)
+			[[ ${OPTARG} =~ ^[0-9]+$ ]] || { echo "${OPTARG} is not a number" >&2; exit 1; }
+			step="${OPTARG}"
+			;;
+		:) 
+			echo "Option -${OPTARG} is missing an argument" >&2
+			exit 1
+			;;
+		\?)
+			echo "Unknown option: -${OPTARG}" >&2
+			exit 1
+			;;
+	esac
+done
+
+shift $(( OPTIND -1 ))
+
+[[ $1 ]] || { echo "missing an argument" >&2; exit 1; }
+[[ $1 =~ ^[0-9]+$ ]] || { echo "$1 is not a number" >&2; exit 1; }
+declare end="$1"
+
+if [[ ! $reverse ]]; then
+	for (( i=start; i <= end; i+=step )); do
+		echo $i
+	done
+else
+	for (( i=end; i >= start; i-=step )); do
+		echo $i
+	done
+fi
+
+exit 0
+
+```
+```
+#!/bin/bash
+
+# Is there an argument?
+if [[ ! $1 ]]; then
+	echo "Missing argument"
+	exit 1
+fi
+
+scriptname="$1"
+bindir="${HOME}/bin"
+filename="${bindir}/${scriptname}"
+
+if [[ -e $filename ]]; then
+	echo "File ${filename} already exists"
+	exit 1
+fi
+
+if type "$scriptname" > /dev/null 2>&1; then
+	echo "There is already a command with name ${scriptname}"
+	exit 1
+fi
+
+# Check bin directory exists
+if [[ ! -d $bindir ]]; then
+	# if not: create bin directory
+	if mkdir "$bindir"; then
+		echo "created ${bindir}"
+	else
+		echo "Could not create ${bindir}."
+		exit 1
+	fi
+fi
+
+# Create a script with a single line
+echo '#!/bin/bash' > "$filename"
+# Add executable permission
+chmod u+x "$filename"
+# Open with editor
+if [[ $EDITOR ]]; then 
+	$EDITOR "$filename"
+else
+	echo "Script created; not starting editor because \$EDITOR is not set."
+fi
+
 ```
