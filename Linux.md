@@ -76,6 +76,7 @@ metadata about a file in memory.
  - chgrp new_group some_file
  - sed -n 's/hello/hi/p' file
  - rsync -r soucr_dir dest_dir
+ - rsync -a soucr_dir dest_dir
 
 #### export var
 
