@@ -65,6 +65,18 @@
 - Redirecting a specific stream: 2>
 - Redirecting into another stream: 2>&1
 
+- chgrp group_name filename
+- diff first_file second_file
+- tar cvf archive.tar file1 file2
+- Links are pointers to files. `Hard links` point to the inode which holds the
+metadata about a file in memory.
+- ln file hard_link_file
+- awk 'BEGIN{i=0; print "Counting sheep"} /sheep/ {i++;print i} END{print
+"Finished"}' file
+ - chgrp new_group some_file
+ - sed -n 's/hello/hi/p' file
+ - rsync -r soucr_dir dest_dir
+
 #### export var
 
 - 0: Standard Input (stdin)
