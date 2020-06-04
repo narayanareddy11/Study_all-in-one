@@ -20,7 +20,9 @@
 	- awk '{print $1}' myfile 
 - -r reverses sort
 -  uniq -remove dublicate
-- sort, uniq, cut and head 
+- sort, uniq, cut and head
+- paste -d : cou state
+- join -a 1 file file2 
 - -n sorts numerically
 - -k sorts by !eld
 - PATH=”$PATH:~/bin”
@@ -42,7 +44,7 @@
 
 #### replace 
  - tr (ex: tr 	S s filename)  
- - sed -i 's/old-text/new-text/g' input.txt 
+ - sed -i 's/old-text/new-text/g' input.txt  or sed 's/old-text//' input.txt  (print the old-txt string)
  - echo $LINE | sed -e "s/12345678/${replace}/g"
 ####  [[ Expression ]]
 - Spaces around the expression are very important!
@@ -68,18 +70,41 @@
 - chgrp group_name filename
 - diff first_file second_file
 - tar cvf archive.tar file1 file2
+- echo file{1..4} > sample.txt
+- cat sample.txt | xargs touch   # create all the files 
+- find /tmp -type d -empty
+- find /tmp -type f -name ".*"
+- find . -type f -name "*.php"  | xargs rm  or -exec mv dir/
+- find / -type d -perm 777 -print -exec chmod 755 {} \;
 - Links are pointers to files. `Hard links` point to the inode which holds the
 metadata about a file in memory.
 - ln file hard_link_file
 - awk 'BEGIN{i=0; print "Counting sheep"} /sheep/ {i++;print i} END{print
 "Finished"}' file
+ - awk -f program filename
  - chgrp new_group some_file
- - sed -n 's/hello/hi/p' file
+ - chown you some_file
+ - sed -n 's/hello/hi/p' file   # s is string and p is print 
  - rsync -r soucr_dir dest_dir
  - rsync -a soucr_dir dest_dir
+ - man rsync
+ - $ grep '^[a-z]' file
+ - grep -irl 'home' file
+ - rwx     rwx     rwx
+ - user    group   other
 
 #### export var
-
+- cat greekfile | tr “[a-z]” “[A-Z]”
+- cat linux.txt | tr [a-z] [A-Z]
+- tr [a-z] [A-Z] < linux.txt >output.txt
+-  /etc/cron.d  # crontab -e
+- @yearly    0 0 1 1 *
+- @daily     0 0 * * *
+- @hourly    0 * * * *
+- sort filename_.csv  or sort -r filename.csv
+- sort -M month.csv or sort -
+- sort -k 1,2 filename.csv   # field 1, 2 
+- sort -c  and sort -u 
 - 0: Standard Input (stdin)
 /dev/stdin
 - 1: Standard Output (stdout)
